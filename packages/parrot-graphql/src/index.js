@@ -14,8 +14,8 @@
 
 const { mockServer } = require('@graphql-tools/mock');
 
-module.exports = function graphql(path, schema, mocks) {
-  const server = mockServer(schema, mocks);
+module.exports = function graphql(path, schema, mocks, preserveResolvers = true) {
+  const server = mockServer(schema, mocks, preserveResolvers);
   return {
     request: ({ method }, match) => match({ path }) && (method === 'GET' || method === 'POST'),
     response: {
